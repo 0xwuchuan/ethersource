@@ -12,7 +12,9 @@ Logic:
     Get Json Response from etherscan through API request
     Process Json result and output files using fs.writeFileSync() in the correct directories
 */
+
 async function parseJson(json: any) {
+    // Can add interface for json type
     const result = json.result[0];
 
     let sourceCode = result.SourceCode;
