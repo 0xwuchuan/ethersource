@@ -3,6 +3,24 @@ const fs = require("fs");
 const path = require("path");
 require("dotenv").config();
 
+/* 
+Logic:
+    Get Json Response from etherscan through API request
+    Process Json result and output files using fs.writeFileSync() in the correct directories
+
+However, there are two different types of verified source code
+    1. Flattened contract (with multiple solidity files) eg. Goblintownwtf https://etherscan.io/address/0xbce3781ae7ca1a5e050bd9c4c77369867ebc307e#code 
+        - Source code is a flattened file where its equally hard to read
+        - @wuchuank To do: Unflatten the contracts and derive the correct paths based on imports
+
+    2. Multiple contracts/files eg. Beanz https://etherscan.io/address/0x306b1ea3ecdf94ab739f1910bbda052ed4a9f949#code
+       - Source code is separated into multiple files
+       - Grab the paths of the multiple files and output the files accordingly
+       - @wuchuank To do: Change the paths to fit the smart contracts relatively so the import statement does not output errors
+
+@wuchuank To do: Support smart contracts that use libraries
+*/
+
 let apiUrl =
     "https://api.etherscan.io/api?module=contract&action=getsourcecode";
 let apiKey = process.env.API_KEY;
@@ -10,18 +28,6 @@ let apiKey = process.env.API_KEY;
 let address = process.argv.slice(2)[0];
 
 getContractJson(address);
-
-/* 
-There are two different types of verified source code
-    1. Flattened contract (with multiple solidity files) eg. Goblintownwtf https://etherscan.io/address/0xbce3781ae7ca1a5e050bd9c4c77369867ebc307e#code 
-    2. Multiple contracts/files eg. Beanz https://etherscan.io/address/0x306b1ea3ecdf94ab739f1910bbda052ed4a9f949#code
-*/
-
-/*
-Logic:
-    Get Json Response from etherscan through API request
-    Process Json result and output files using fs.writeFileSync() in the correct directories
-*/
 
 async function getContractJson(address) {
     try {
