@@ -8,7 +8,7 @@
     "description": "tool to get verified source code from etherscan",
     "devDependencies": {},
     "scripts": {
-        "source": "node scripts/etherscan.js"
+        "ethersource": "node scripts/etherscan.js"
     },
     "repository": {
         "type": "git",

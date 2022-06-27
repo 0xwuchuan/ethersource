@@ -7,7 +7,9 @@ let apiUrl =
     "https://api.etherscan.io/api?module=contract&action=getsourcecode";
 let apiKey = process.env.API_KEY;
 
-getContractJson("0x306b1ea3ecdf94ab739f1910bbda052ed4a9f949");
+let address = process.argv.slice(2)[0];
+
+getContractJson(address);
 
 /* 
 There are two different types of verified source code
