@@ -58,6 +58,7 @@ async function parseJson(json) {
 
             fileNames.forEach((filePath) => {
                 let directoryPath = path.join(
+                    "build",
                     `${name}`,
                     path.dirname(filePath)
                 );
@@ -66,7 +67,7 @@ async function parseJson(json) {
                 });
 
                 fs.writeFileSync(
-                    `./${name}/${filePath}`,
+                    `./build/${name}/${filePath}`,
                     sourceFiles[filePath].content,
                     (err) => {
                         if (err) throw err;

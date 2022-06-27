@@ -22,4 +22,7 @@ This small project was heavily inspired by [DethCode](https://github.com/dethcry
 ## Usage
 
 1. Run `npm install` to install the dependencies needed for this tool
+
 2. Run `npm run ethersource <contract_address>` to download the verified source code from etherscan
+
+3. Your downloaded files will be in the build folder
