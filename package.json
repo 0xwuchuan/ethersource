@@ -2,5 +2,22 @@
     "dependencies": {
         "axios": "^0.27.2",
         "dotenv": "^16.0.1"
-    }
+    },
+    "name": "ethersource",
+    "version": "1.0.0",
+    "description": "tool to get verified source code from etherscan",
+    "devDependencies": {},
+    "scripts": {
+        "source": "node scripts/etherscan.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/wuchuank/ethersource.git"
+    },
+    "author": "wuchuank",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/wuchuank/ethersource/issues"
+    },
+    "homepage": "https://github.com/wuchuank/ethersource#readme"
 }

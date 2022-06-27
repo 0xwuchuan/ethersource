@@ -3,6 +3,12 @@ const fs = require("fs");
 const path = require("path");
 require("dotenv").config();
 
+let apiUrl =
+    "https://api.etherscan.io/api?module=contract&action=getsourcecode";
+let apiKey = process.env.API_KEY;
+
+getContractJson("0x306b1ea3ecdf94ab739f1910bbda052ed4a9f949");
+
 /* 
 There are two different types of verified source code
     1. Flattened contract (with multiple solidity files) eg. Goblintownwtf https://etherscan.io/address/0xbce3781ae7ca1a5e050bd9c4c77369867ebc307e#code 
@@ -14,9 +20,6 @@ Logic:
     Get Json Response from etherscan through API request
     Process Json result and output files using fs.writeFileSync() in the correct directories
 */
-let apiUrl =
-    "https://api.etherscan.io/api?module=contract&action=getsourcecode";
-let apiKey = process.env.API_KEY;
 
 async function getContractJson(address) {
     try {
@@ -28,8 +31,6 @@ async function getContractJson(address) {
         console.log(err);
     }
 }
-
-getContractJson("0x306b1ea3ecdf94ab739f1910bbda052ed4a9f949");
 
 async function parseJson(json) {
     const result = json.result[0];
@@ -76,5 +77,7 @@ async function parseJson(json) {
         // To do: Include libraries
     } catch (e) {
         console.log(e);
+    } finally {
+        console.log(`${name} Created`);
     }
 }
