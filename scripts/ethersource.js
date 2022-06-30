@@ -47,9 +47,9 @@ async function parseJson(json) {
 
     let sourceCode = result.SourceCode;
 
+    sourceCode = sourceCode.trim();
     // Etherscan may return a json object in SourceCode if it is in multiple contracts/files, else sourceCode is the flattened file
     try {
-        sourceCode = sourceCode.trim();
         // Remove outer {} to get a JSON string to parse
         if (sourceCode.startsWith("{{") && sourceCode.endsWith("}}")) {
             sourceCode = sourceCode.substring(1, sourceCode.length - 1);
@@ -68,6 +68,7 @@ async function parseJson(json) {
                     `${name}`,
                     path.dirname(filePath)
                 );
+                console.log(filePath);
                 fs.mkdirSync(directoryPath, { recursive: true }, (err) => {
                     if (err) throw err;
                 });
@@ -81,7 +82,18 @@ async function parseJson(json) {
                 );
             });
         } else {
-            // FLATTENED FILE
+            let directoryPath = path.join("build", `${name}`);
+            fs.mkdirSync(directoryPath, { recursive: true }, (err) => {
+                if (err) throw err;
+            });
+
+            fs.writeFileSync(
+                `./build/${name}/${name}.sol`,
+                sourceCode,
+                (err) => {
+                    if (err) throw err;
+                }
+            );
         }
         // To do: Include libraries
     } catch (e) {
