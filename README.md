@@ -1,5 +1,7 @@
 # Ethersource
 
+> Turns out there is a better tool (cast from foundry) already but this is just here as a reminder that at least i tried something 💀
+
 ## About
 
 Ethersource is a simple tool to download the source code of verified smart contracts on etherscan. The files are organised in their respective paths and allows for a better experience of browsing smart contracts from etherscan
